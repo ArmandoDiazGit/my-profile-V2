@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { Mail, Send, CheckCircle2 } from "lucide-react";
 import {
   Card,
@@ -11,52 +11,52 @@ import { Button } from "../libs/Button";
 import { Input } from "../ui/Input";
 import { Textarea } from "../ui/Textarea";
 import { Label } from "../ui/Label";
-import { personalInfo } from "../libs/Data";
-// import { toast } from "../hooks/use-toast";
+import { personalInfo, contactFormSubmit } from "../libs/Data";
+import { toast } from "../hooks/use-toast";
 
 function Contact() {
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   message: "",
-  // });
-  // const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // const handleChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  //   try {
-  //     await contactFormSubmit(formData);
-  //     setIsSubmitted(true);
-  //     toast({
-  //       title: "Message Sent!",
-  //       description: "Thank you for reaching out. I'll get back to you soon.",
-  //     });
+    try {
+      await contactFormSubmit(formData);
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
 
-  //     setTimeout(() => {
-  //       setFormData({ name: "", email: "", message: "" });
-  //       setIsSubmitted(false);
-  //     }, 3000);
-  //   } catch (error) {
-  //     console.log(error)
-  //     toast({
-  //       title: "Error",
-  //       description: "Something went wrong. Please try again.",
-  //       variant: "destructive",
-  //     });
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
+      setTimeout(() => {
+        setFormData({ name: "", email: "", message: "" });
+        setIsSubmitted(false);
+      }, 3000);
+    } catch (error) {
+      console.log(error)
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section
@@ -114,7 +114,7 @@ function Contact() {
               </div>
             </div>
 
-            {/* <Card className="bg-slate-800/50 border-2 border-slate-700 backdrop-blur-sm">
+            <Card className="bg-slate-800/50 border-2 border-slate-700 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-white">Send a Message</CardTitle>
                 <CardDescription className="text-gray-400">
@@ -194,7 +194,7 @@ function Contact() {
                   </Button>
                 </form>
               </CardContent>
-            </Card> */}
+            </Card>
           </div>
         </div>
       </div>
